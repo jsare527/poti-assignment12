@@ -29,6 +29,15 @@
             <div class="card-header text-center">
                 Overdue Tasks
             </div>
+            <ul class="list-group list-group-flush">
+                {% for item in data %}
+                    {% if item.IsOverdue %}
+                    <li class="list-group-item">
+                        {{item.DateCreated}}: {{item.Description}} [<a href="{{ url_for('markComplete', task_id=item.taskid) }}">Complete</a>] [<a href="{{ url_for('deleteTask', task_id=item.taskid) }}">Delete</a>]
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="col-4">
@@ -36,6 +45,15 @@
             <div class="card-header text-center">
                 Pending Tasks
             </div>
+            <ul class="list-group list-group-flush">
+                {% for item in data %}
+                    {% if item.IsPending %}
+                    <li class="list-group-item">
+                        {{item.DateCreated}}: {{item.Description}} [<a href="{{ url_for('markComplete', task_id=item.taskid) }}">Complete</a>] [<a href="{{ url_for('deleteTask', task_id=item.taskid) }}">Delete</a>]
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="col-4">
@@ -43,6 +61,15 @@
             <div class="card-header text-center">
                 Completed Tasks
             </div>
+            <ul class="list-group list-group-flush">
+                {% for item in data %}
+                    {% if item.IsCompleted %}
+                    <li class="list-group-item">
+                        {{item.DateCreated}}: {{item.Description}} [<a href="{{ url_for('deleteTask', task_id=item.taskid) }}">Delete</a>]
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>
